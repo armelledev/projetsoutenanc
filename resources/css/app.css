@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sidebar-link {
+    @apply flex items-center gap-3 rounded-lg px-4 py-3 text-gray-700 hover:bg-gray-100 transition-colors;
+}
+
+.sidebar-link.active {
+    @apply bg-green-50 text-green-700 font-medium;
+}
+
+.sidebar-sub {
+    @apply block rounded-lg px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 transition-colors;
+}
+
+.sidebar-sub.active {
+    @apply bg-green-50/70 text-green-700 font-medium;
+}
