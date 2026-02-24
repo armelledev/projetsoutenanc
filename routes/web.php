@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdmindDashboardController;
+use App\Http\Controllers\PresencesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +23,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/users', function () {
         return 'Page admin : Liste des utilisateurs';
     })->name('admin.users');
+});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/presences', [PresencesController::class, 'mesPresences'])->name('presences');
+});
+
+Route::middleware(['auth', 'checkrole:admin'])->group(function () {
+    Route::get('/admin/admin', [AdmindDashboardController::class, 'dashboard'])->name('admin.dashboard');
 });
 
 require __DIR__.'/auth.php';
