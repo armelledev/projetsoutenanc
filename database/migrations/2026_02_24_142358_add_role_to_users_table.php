@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+            Schema::table('users', function (Blueprint $table) {
+            $table->string('role', 20)
+                  ->default(\App\enum\UserRole::EMPLOYEE->value)
+                  ->after('password');
+        });
         });
     }
 
@@ -21,10 +26,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-
-        $table->sreing('role')->default('employee')->after('email');
-            //
+     Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role');
         });
     }
 };

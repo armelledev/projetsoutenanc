@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdmindDashboardController;
+
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PresencesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -9,9 +11,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Dashboard employé (enseignant)
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+// Espace admin
+Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])
+        ->name('admin.dashboard');
+        
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -19,17 +30,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/users', function () {
-        return 'Page admin : Liste des utilisateurs';
-    })->name('admin.users');
-});
-Route::middleware(['auth'])->group(function () {
-    Route::get('/presences', [PresencesController::class, 'mesPresences'])->name('presences');
-});
-
-Route::middleware(['auth', 'checkrole:admin'])->group(function () {
-    Route::get('/admin/admin', [AdmindDashboardController::class, 'dashboard'])->name('admin.dashboard');
-});
 
 require __DIR__.'/auth.php';

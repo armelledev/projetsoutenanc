@@ -20,13 +20,13 @@
 
         <!-- Sidebar fixe à gauche -->
         {{-- resources/views/layouts/sidebar.blade.php (ou directement dans app-layout) --}}
-<aside class="hidden md:block w-64 flex-shrink-0 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+<aside class="hidden md:block w-64 flex-shrink-0 border-r border-gold/10 bg-[#0a0a0a]">
     <div class="flex h-full flex-col">
         <!-- Logo / Titre -->
-        <div class="h-16 flex items-center px-6 border-b border-gray-200 dark:border-gray-700">
-            <span class="text-xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-lg bg-green-600 text-white flex items-center justify-center font-bold">P</div>
-                Présences
+        <div class="h-16 flex items-center px-6 border-b border-gold/10">
+            <span class="text-xl font-bold text-white flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-gold text-black flex items-center justify-center font-bold">P</div>
+                <span class="text-gold">Présences</span>
             </span>
         </div>
 
@@ -35,24 +35,23 @@
             <ul class="space-y-1.5">
                 <li>
                     <a href="{{ route('dashboard') }}"
-                       class="sidebar-link group {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                       class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors {{ request()->routeIs('dashboard') ? 'bg-gold/10 text-gold' : 'text-gray-300 hover:text-gold hover:bg-gold/5' }}">
                         <x-heroicon-o-home class="h-5 w-5" />
-                        Dashboard
+                        <span>Dashboard</span>
                     </a>
                 </li>
 
-                {{-- Lien vers Mes présences --}}
                 <li>
-                    <a href="{{ route('presences') }}"
-                       class="sidebar-link group {{ request()->routeIs('presences.mes') ? 'active' : '' }}">
+                    <a href=""
+                       class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors {{ request()->routeIs('presences.mes') ? 'bg-gold/10 text-gold' : 'text-gray-300 hover:text-gold hover:bg-gold/5' }}">
                         <x-heroicon-o-calendar-days class="h-5 w-5" />
                         Mes présences
                     </a>
                 </li>
 
-                <li class="mt-10 pt-5 border-t border-gray-200 dark:border-gray-700">
+                <li class="mt-10 pt-5 border-t border-gold/10">
                     <a href="{{ route('profile.edit') }}"
-                       class="sidebar-link group {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
+                       class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors {{ request()->routeIs('profile.edit') ? 'bg-gold/10 text-gold' : 'text-gray-300 hover:text-gold hover:bg-gold/5' }}">
                         <x-heroicon-o-user class="h-5 w-5" />
                         Mon profil
                     </a>
@@ -62,7 +61,7 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit"
-                                class="sidebar-link text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 w-full text-left group">
+                                class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-colors w-full text-left text-red-400 hover:bg-red-500/10 hover:text-red-300">
                             <x-heroicon-o-arrow-right-on-rectangle class="h-5 w-5" />
                             Déconnexion
                         </button>
@@ -71,7 +70,7 @@
             </ul>
         </nav>
 
-        <div class="p-4 text-xs text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700">
+        <div class="p-4 text-xs text-gray-500 border-t border-gold/10">
             v{{ config('app.version', '1.0') }} • Employé
         </div>
     </div>
