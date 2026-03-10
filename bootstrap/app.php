@@ -14,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         //
       $middleware->alias([
-        'role' => \App\Http\Middleware\RestrictByRole::class,
+        'RestrictByRole' => \App\Http\Middleware\RestrictByRole::class,
         // Tu peux en ajouter d'autres ici
     ]);
     // ← AJOUTE ÇA : redirection personnalisée après login
