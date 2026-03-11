@@ -1,13 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+/* Indique à Tailwind v4 d'utiliser la classe .dark comme déclencheur */
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-gold: #c9a959;
+  --color-gold-light: rgba(201, 169, 89, 0.08);
+}
+
+@utility card-premium {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(201, 169, 89, 0.15);
+  transition: all 0.3s ease;
+
+  /* Version sombre automatique */
+  @variant dark {
+    background: rgba(18, 18, 20, 0.7);
+    border-color: rgba(201, 169, 89, 0.3);
+  }
+}
+
+/* Tes classes personnalisées avec @apply fonctionnent directement ici en v4 */
 .sidebar-link {
     @apply flex items-center gap-3 rounded-lg px-4 py-3 text-gray-700 hover:bg-gray-100 transition-colors;
 }
 
 .sidebar-link.active {
-    @apply bg-green-50 text-green-700 font-medium;
+    @apply bg-green-50 text-green-700 font-medium dark:bg-green-900/20 dark:text-green-400;
 }
 
 .sidebar-sub {
@@ -15,5 +35,5 @@
 }
 
 .sidebar-sub.active {
-    @apply bg-green-50/70 text-green-700 font-medium;
+    @apply bg-green-50/70 text-green-700 font-medium dark:bg-green-900/10 dark:text-green-400;
 }

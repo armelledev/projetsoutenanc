@@ -1,0 +1,62 @@
+@startuml
+' Paramètres d'affichage pour un rendu propre
+skinparam actorStyle awesome
+left to right direction
+skinparam packageStyle rectangle
+skinparam roundcorner 10
+
+actor "Administrateur\n(CFPC)" as Admin
+actor "Employé" as Emp
+actor "Directeur\n(M. TETCHA)" as Dir
+
+rectangle "Système LaetiTime" {
+    
+    ' Cas d'utilisation génériques
+    usecase "S'authentifier" as UC_Login
+    usecase "Consulter les tableaux de bord" as UC_Dash
+
+    ' Cas d'utilisation spécifiques à l'Admin
+    usecase "Gérer les utilisateurs (CRUD)" as UC_User
+    usecase "Gérer les établissements" as UC_Etab
+    usecase "Gérer les emplois du temps" as UC_EDT
+    usecase "Pointage des Arrivées / Départs" as UC_Pointage
+    usecase "Générer des rapports de présence" as UC_Rapports
+    usecase "Valider les justifications d'absence" as UC_Valider
+
+    ' Cas d'utilisation spécifiques à l'Employé
+    usecase "Justifier un retard ou une absence" as UC_Justif
+    usecase "Consulter son historique de présence" as UC_History
+
+    ' Cas d'utilisation spécifiques au Directeur
+    usecase "Consulter les statistiques globales" as UC_Stats
+}
+
+' Relations pour l'Administrateur
+Admin -- UC_Login
+Admin -- UC_Dash
+Admin -- UC_User
+Admin -- UC_Etab
+Admin -- UC_EDT
+Admin -- UC_Pointage
+Admin -- UC_Rapports
+Admin -- UC_Valider
+
+' Relations pour l'Employé
+Emp -- UC_Login
+Emp -- UC_Dash
+Emp -- UC_Justif
+Emp -- UC_History
+
+' Relations pour le Directeur
+Dir -- UC_Login
+Dir -- UC_Dash
+Dir -- UC_Stats
+Dir -- UC_Rapports
+
+' Dépendances (Inclusions) - L'authentification est obligatoire
+UC_User ..> UC_Login : <<include>>
+UC_Pointage ..> UC_Login : <<include>>
+UC_Justif ..> UC_Login : <<include>>
+UC_Stats ..> UC_Login : <<include>>
+
+@endum

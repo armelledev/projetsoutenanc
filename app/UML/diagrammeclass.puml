@@ -1,0 +1,64 @@
+@startuml
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam backgroundcolor white
+skinparam BoxPadding 10
+
+title Diagramme de Classes - Système de Gestion LaetiTime
+
+class Utilisateur {
+    +id : BigInt
+    +nom : String
+    +email : String
+    +mot_de_passe : String
+    +role : Enum {ADMIN, EMPLOYE, DIRECTION}
+    +creerCompte()
+    +modifierProfil()
+}
+
+class Employe {
+    +id : Int
+    +matricule : String
+    +departement : String
+    +poste : String
+    +date_embauche : Date
+}
+
+class Pointage {
+    +id : Int
+    +date : Date
+    +heure_arrivee : Time
+    +statut : Enum {PRESENT, ABSENT, RETARD}
+    +admin_id : Int
+    +enregistrerPresence()
+}
+
+class Justification {
+    +id : Int
+    +motif : Text
+    +piece_jointe : String
+    +date_soumission : DateTime
+    +est_valide : Boolean
+    +soumettreJustif()
+}
+
+class Etablissement {
+    +id : Int
+    +nom_etablissement : String
+    +ville : String
+    +adresse : String
+}
+
+' Relations
+Utilisateur "1" -- "0..1" Employe : possède >
+Etablissement "1" -- "*" Utilisateur : regroupe >
+Utilisateur "1" -- "*" Pointage : valide (si Admin) >
+Employe "1" -- "*" Pointage : est concerné par >
+Employe "1" -- "*" Justification : fournit >
+Pointage "1" -- "0..1" Justification : est lié à >
+
+note top of Utilisateur : Gère l'authentification Laravel
+note right of Pointage : L'Admin remplit ce formulaire\nchaque matin pour l'employé
+note bottom of Justification : L'employé remplit ceci\nuniquement en cas d'absence
+
+@endum

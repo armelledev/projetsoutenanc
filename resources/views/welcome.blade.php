@@ -78,9 +78,9 @@
         }
     </style>
 </head>
-<body class="font-[inter] antialiased bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-gray-100 transition-colors duration-500">
+<body class="font-[inter] antialiased bg-gray-100 dark:bg-[#0a0a0a] text-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-<header class="fixed w-full bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-gray-100 dark:border-gold/10 z-50">
+<header class="fixed w-full bg-gray-50/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-gray-100 dark:border-gold/10 z-50">
     <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
         <a href="/" class="text-2xl font-medium tracking-tight text-gray-900 dark:text-white hover:text-gold transition-colors group">
             LaetiTime<span class="text-gold ml-0.5 group-hover:opacity-80">.</span>
@@ -113,7 +113,7 @@
 
 <main class="relative pt-20">
     <div class="hero-image absolute inset-0 w-full h-full"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent dark:from-[#0a0a0a] dark:via-[#0a0a0a]/70 dark:to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-gray-100 via-gray-100/90 to-transparent dark:from-[#0a0a0a] dark:via-[#0a0a0a]/70 dark:to-transparent"></div>
     
     <div class="relative max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-32 z-10">
         <div class="max-w-3xl">
@@ -143,7 +143,7 @@
             </div>
             
             <div class="flex flex-wrap gap-4 animate-fade-up delay-4">
-                <a href="#" class="bg-gold text-white dark:text-black px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition shadow-lg shadow-gold/20 inline-flex items-center gap-2">
+                <a href="#" class="bg-gold text-gray-50 dark:text-black px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition shadow-lg shadow-gold/20 inline-flex items-center gap-2">
                     Demander une démo
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -157,7 +157,7 @@
     </div>
 </main>
 
-<section class="py-24 bg-white dark:bg-[#0a0a0a] dot-pattern transition-colors duration-500">
+<section class="py-24 bg-gray-50 dark:bg-[#0a0a0a] dot-pattern transition-colors duration-500">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         <div class="text-center mb-16">
             <span class="text-xs font-semibold tracking-[0.25em] text-gold uppercase bg-gold-light py-2 px-4 rounded-full border border-gold/10">Fonctions clés</span>
@@ -186,7 +186,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="rounded-2xl overflow-hidden border border-gray-100 dark:border-gold/20 shadow-2xl">
+            <div class="rounded-2xl overflow-hidden border border-gray-900 dark:border-gold/20 shadow-2xl">
                 <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Dashboard" class="w-full h-auto">
             </div>
         </div>
@@ -236,7 +236,7 @@
     </div>
 </section>
 
-<footer class="bg-white dark:bg-[#0a0a0a] pt-20 pb-12 border-t border-gray-100 dark:border-gold/10 transition-colors duration-500">
+<footer class="bg-gray-50 dark:bg-[#0a0a0a] pt-20 pb-12 border-t border-gray-100 dark:border-gold/10 transition-colors duration-500">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
             <div>
@@ -273,7 +273,7 @@
     </div>
 </footer>
 
-<button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 w-12 h-12 bg-white dark:bg-[#1a1a1a] border border-gold/20 rounded-full flex items-center justify-center text-gold hover:scale-110 shadow-lg transition-all z-50">
+<button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 w-12 h-12 bg-gray-50 dark:bg-[#1a1a1a] border border-gold/20 rounded-full flex items-center justify-center text-gold hover:scale-110 shadow-lg transition-all z-50">
     ↑
 </button>
 

@@ -1,0 +1,47 @@
+@startuml
+' Paramètres visuels pour un rendu professionnel
+skinparam Style strictuml
+skinparam SequenceMessageAlign center
+skinparam ParticipantPadding 20
+skinparam BoxPadding 10
+
+' Définition des acteurs et composants
+actor "Administrateur" as Admin #Gold
+box "Frontend (Tailwind v4)" #GhostWhite
+    participant "Interface\nDashboard" as View #White
+end box
+
+box "Backend (Laravel MVC)" #Ivory
+    participant "AttendanceController" as Controller #LightGreen
+    participant "Attendance Model" as Model #LightBlue
+end box
+
+database "MySQL" as DB #White
+
+title Diagramme de Séquence : Enregistrement d'une présence (LaetiTime)
+
+== Initialisation ==
+Admin -> View : Accède à la liste des employés
+View --> Admin : Affiche la liste
+
+== Processus de Pointage ==
+Admin -> View : Sélectionne un employé et valide
+View -> Controller : POST /attendance (ID_employé, statut)
+activate Controller
+
+Controller -> Model : create([data])
+activate Model
+
+Model -> DB : INSERT INTO attendances
+activate DB
+DB --> Model : Confirmation
+deactivate DB
+
+Model --> Controller : Instance créée
+deactivate Model
+
+Controller --> View : Réponse 200 (Success)
+deactivate Controller
+
+View --> Admin : Notification "Pointage réussi"
+@endum
