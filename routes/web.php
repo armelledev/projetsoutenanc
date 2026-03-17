@@ -19,7 +19,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 // Espace admin
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
 
-    Route::middleware(['auth', 'RestrictByRole:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::middleware(['auth', 'RestrictByRole:admin'])->name('admin.')->group(function () {
         Route::resource('users', AdminUserController::class)->except(['show']);
     });
 
@@ -27,18 +27,25 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
         ->name('admin.dashboard');
 
 });
-Route::get('/admin/Users.edit', [AdminUserController::class, 'edit'])->name('admin.Users.edit');
 
-Route::get('/admin/user.create', [AdminUserController::class, 'create'])->name('admin.Users.create');
 
-Route::put('admin/presences', [PresenceController::class, 'store'])->name('admin.presences.store');
+// Route::get('/Users.edit', [AdminUserController::class, 'edit'])->name('admin.Users.edit');
+
+// Route::get('/user.create', [AdminUserController::class, 'create'])->name('admin.Users.create');
+
+
+
 Route::get('admin/presences/create', [PresenceController::class, 'create'])->name('admin.presences.create');
+Route::put('admin/presences', [PresenceController::class, 'store'])->name('admin.presences.store');
+
 Route::put('/presences/{presence}/depart', [PresenceController::class, 'depart'])->name('admin.presences.depart');
 Route::get('admin/presences/index', [PresenceController::class, 'index'])->name('admin.presences.index');
 Route::get('admin/presences/{presence}/edit', [PresenceController::class, 'edit'])->name('admin.presences.edit');
 Route::put('/presences/{presence}', [PresenceController::class, 'update'])->name('admin.presences.update');
 Route::delete('/presences/delete/{presence}', [PresenceController::class, 'destroy'])->name('admin.presences.delete');
+
 Route::post('/presence/{presence}/justifier', [DashboardController::class, 'storeJustification'])
+
         ->name('employe.justification.store');
 
 

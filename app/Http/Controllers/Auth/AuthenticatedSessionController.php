@@ -8,13 +8,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
     public function create(): View
     {
         return view('auth.login');
@@ -26,27 +22,27 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+
+        // On redirige selon le rôle stocké en base de données
+        // Vérifie bien que c'est écrit 'admin' en minuscules dans ta table users
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard'); 
+        }
+
+        // Pour tous les autres (EMPLOYE, etc.)
+        return redirect()->intended(route('dashboard'));
     }
 
     /**
      * Destroy an authenticated session.
      */
-    protected function authenticated(Request $request, $user){
-        if($user->isAdmin()){
-            return redirect('/layouts/admin.Dashboard');
-        }
-        return redirect('/layouts/admin.employer');
-    }
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');
